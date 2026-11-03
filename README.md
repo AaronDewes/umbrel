@@ -1,141 +1,90 @@
-[![Umbrel](https://static.getumbrel.com/github/github-banner-umbrel.svg)](https://github.com/getumbrel/umbrel)
+[![umbrelOS](https://github.com/user-attachments/assets/0d7874d9-36a6-4405-81cd-789b72d7dea0)](https://umbrel.com/umbrelos)
 
-[![Version](https://img.shields.io/github/v/release/getumbrel/umbrel?color=%235351FB&label=version)](https://github.com/getumbrel/umbrel/releases)
-[![Community Chat](https://img.shields.io/badge/community%20chat-telegram-%235351FB)](https://t.me/getumbrel)
-[![Developer Chat](https://img.shields.io/badge/dev%20chat-keybase-%235351FB)](https://keybase.io/team/getumbrel)
+<p align="center">
+  <h1 align="center">umbrelOS</h1>
+  <p align="center">
+    A beautiful home server OS for self-hosting
+    <br />
+    <a href="https://umbrel.com"><strong>umbrel.com »</strong></a>
+    <br />
+    <br />
+       Get an <a href="https://umbrel.com/umbrel-pro">Umbrel Pro</a> or <a href="https://umbrel.com/umbrel-home">Umbrel Home</a>, or <a href="https://umbrel.com/downloads">download umbrelOS</a> for free on an Intel or AMD machine, Raspberry Pi 5, or a virtual machine.
+    <br />
+    <br />
+    <a href="https://x.com/umbrel">
+      <img src="https://img.shields.io/twitter/follow/umbrel?style=social" />
+    </a>
+    <a href="https://discord.gg/efNtFzqtdx">
+      <img src="https://img.shields.io/discord/936694604231766046?logo=discord&logoColor=5351FB&label=Discord&labelColor=white&color=5351FB&cacheSeconds=60">
+    </a>
+    <a href="https://reddit.com/r/getumbrel">
+      <img src="https://img.shields.io/reddit/subreddit-subscribers/getumbrel?style=social">
+    </a>
+    <a href="https://community.umbrel.com">
+      <img src="https://img.shields.io/discourse/users?server=https%3A%2F%2Fcommunity.umbrel.com&style=flat&label=Community%20Forum&color=5351FB&cacheSeconds=60">
+    </a>
+  </p>
+</p>
 
-[![Twitter](https://img.shields.io/twitter/follow/getumbrel?style=social)](https://twitter.com/getumbrel)
-[![Reddit](https://img.shields.io/reddit/subreddit-subscribers/getumbrel?label=Subscribe%20%2Fr%2Fgetumbrel&style=social)](https://reddit.com/r/getumbrel)
+<br />
 
-# ☂️ Umbrel
+<p align="center">
+At Umbrel, we believe that everyone should be able to enjoy the convenience and benefits of the cloud, without giving up ownership and control of their data.
+</p>
 
-> ⚠️ Umbrel is currently in beta and is not considered secure. Please see [SECURITY.md](SECURITY.md) for more details.
+<p align="center">
+To achieve our vision, we're building a new kind of a home server OS. Just like the cloud, but one that you own and control.
+</p>
 
-This is the master repository of Umbrel and contains the framework for orchestration of all containerized services running on [Umbrel OS](https://github.com/getumbrel/umbrel-os).
+<br />
 
-It is platform and architecture-agnostic, thus can be used to directly spin up instances of Umbrel without installing the [Umbrel OS](https://github.com/getumbrel/umbrel-os) since all orchestrated services use multi-architecture Docker images.
+<p align="center">
+  <h1 align="center">umbrelOS 2.0</h1>
+  <img width="3840" height="2880" alt="bento 2 0" src="https://github.com/user-attachments/assets/a183106e-7d8a-4b84-bd7b-4cd06c9ff148" />
+</p>
 
-We run it on Raspbery Pis (ARMv8) as a part of [Umbrel OS](https://github.com/getumbrel/umbrel-os), Ubuntu (x64) for [testnet.getumbrel.com](https://testnet.getumbrel.com) and macOS (x64) for local development.
+umbrelOS 2.0 is out now, and it's the biggest update to umbrelOS yet. [Watch the keynote](https://youtu.be/lBsKk_NNg2A) or read the [full release notes](https://github.com/getumbrel/umbrel/releases/tag/2.0.0).
 
-## 🚀 Getting started
+- **Photos:** photos and videos on your Umbrel show up in the new Photos app, and [Umbrel for iPhone](https://link.umbrel.com/ios-app) backs up your entire camera roll automatically.
+- **Machines:** run Windows, Ubuntu, Debian, Android, and more right inside your Umbrel, with the full desktop in a browser tab.
+- **Multi-user:** everyone in your household gets their own account, home screen, and private home folder. Share only the apps and folders you choose.
+- **Storage Manager:** combine multiple internal drives into one space, or turn on FailSafe (RAID) to stay protected if a drive fails.
+- **AI agents:** connect any AI agent to the built-in MCP server to install apps, organize files, or troubleshoot issues, with only the access you allow.
+- **GPU acceleration:** apps like Ollama and Jellyfin can use NVIDIA, AMD, and Intel GPUs, including Thunderbolt eGPUs.
+- **Bring your cloud home:** import your files from Google Drive, Dropbox, OneDrive, iCloud, and more in one go, or keep them backing up continuously.
+- **New app settings:** point any app at folders on external or network drives, or move entire apps to an external drive.
+- **Umbrel for Mac:** the [Mac app](https://link.umbrel.com/macos-app) adds your Umbrel as a drive in Finder, at home or remotely over Tailscale.
 
-If you're looking to run Umbrel on:
-
-- A Raspberry Pi 4 with at least 4GB RAM (recommended) - [Download Umbrel OS](https://github.com/getumbrel/umbrel-os)
-- Anything else (**not recommended** as it's experimental at the moment) - [Install Umbrel](#-installation)
-
-## 🛠 Installation
-
-[Umbrel OS for Raspberry Pi](https://github.com/getumbrel/umbrel-os) is the easiest and the **recommended** way to run Umbrel. If you don't have a Raspberry Pi, you can manually install Umbrel on any hardware running a Linux-based operating system such as Ubuntu, Debian, etc by following the instructions below, but please note it's not the recommended way to run Umbrel as it's still very experimental.
-
-### Installation Requirements
-
-- 4GB RAM and 600GB+ free space (for mainnet)
-- [Docker](https://docs.docker.com/engine/install)
-- [Python 3.0+](https://www.python.org/downloads)
-- [Docker Compose](https://docs.docker.com/compose/install)
-- [fswatch](https://emcrisostomo.github.io/fswatch/), [jq](https://stedolan.github.io/jq/), [rsync](https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/#installing-rsync), [curl](https://curl.haxx.se/docs/install.html) (`sudo apt-get install fswatch jq rsync curl`)
-
-Make sure your User ID is `1000` (verify it by running `id -u`) and ensure that your account is [correctly permissioned to use docker](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
-
-### Step 1. Download Umbrel
-
-> Run this in an empty directory where you want to install Umbrel. If using an external storage such as an SSD or HDD, run this inside an empty directory on that drive.
-
-```bash
-curl -L https://github.com/getumbrel/umbrel/archive/v0.3.14.tar.gz | tar -xz --strip-components=1
-```
-
-### Step 2. Run Umbrel
-
-```bash
-# To use Umbrel on mainnet, run:
-sudo ./scripts/start
-
-# The following environment settings can only be set
-# during first run of the start script and will be persisted through
-# any updates
-
-# For testnet, run:
-sudo NETWORK=testnet ./scripts/start
-
-# For regtest, run:
-sudo NETWORK=regtest ./scripts/start
-
-# For umbrel to listen on port 12345 instead of 80, run:
-sudo NGINX_PORT=12345 ./scripts/start
-```
-
-To stop Umbrel, run:
-
-```bash
-sudo ./scripts/stop
-```
-
-## 🎹 Services orchestrated
-
-- [`Umbrel Dashboard`](https://github.com/getumbrel/umbrel-dashboard)
-- [`Umbrel Manager`](https://github.com/getumbrel/umbrel-manager)
-- [`Umbrel Middleware`](https://github.com/getumbrel/umbrel-middleware)
-- [`Bitcoin Core`](https://github.com/getumbrel/docker-bitcoind)
-- [`LND`](https://github.com/getumbrel/docker-lnd)
-- [`Tor`](https://github.com/getumbrel/docker-tor)
-- [`Nginx`](https://github.com/nginx/nginx)
-- [`Neutrino Switcher`](https://github.com/lncm/docker-lnd-neutrino-switch)
-- [`Electrs`](https://github.com/romanz/electrs)
+Already running umbrelOS? Update from **Settings > Software update**. Setting up a new device? See [Installing umbrelOS](#installing-umbrelos) below.
 
 
-**Architecture**
+## Installing umbrelOS
 
-```
-                          + -------------------- +
-                          |   umbrel-dashboard   |
-                          + -------------------- +
-                                      |
-                                      |
-                              + ------------- +
-                              |     nginx     |
-                              + ------------- +
-                                      |
-                                      |
-              + - - - - - - - - - - - + - - - - - - - - - - - +
-              |                                               |
-              |                                               |
-   + ------------------ +                         + --------------------- +
-   |   umbrel-manager   | < - - - jwt auth - - -  |   umbrel-middleware   |
-   + ------------------ +                         + --------------------- +
-                                                              |
-                                                              |
-                                            + - - - - - - - - + - - - - - - - - +
-                                            |                                   |
-                                            |                                   |
-                                    + ------------- +                   + ------------- +
-                                    |    bitcoind   | < - - - - - - - - |      lnd      |
-                                    + ------------- +                   + ------------- +
-```
+umbrelOS is free and complete on any hardware. The image you install on your own device is the same umbrelOS that ships on [Umbrel Home](https://umbrel.com/umbrel-home) and [Umbrel Pro](https://umbrel.com/umbrel-pro), with the same features and the same updates.
 
----
+### Supported devices
 
-## ⚡️ Don't be too reckless
+- **Intel and AMD devices:** umbrelOS supports most 64-bit mini PCs, laptops, desktops, NAS boxes, and servers. Minimum requirements: Dual-core CPU, 4 GB RAM (8 GB+ recommended), and a 32 GB drive for umbrelOS. umbrelOS boots from one drive and uses the rest for apps and data.
+- **Raspberry Pi 5:** boot from an NVMe or USB drive rather than a microSD card.
+- **Virtual machines:** Proxmox, VirtualBox, VMware, or anything else that supports EFI boot.
 
-Umbrel is still in beta development and should not be considered secure. [Read our writeup of security tradeoffs](https://github.com/getumbrel/umbrel/blob/master/SECURITY.md) that exist today.
+A few features depend on your hardware. Storage Manager and FailSafe need two or more internal NVMe or SATA drives, and GPU acceleration needs an NVIDIA, AMD, or Intel GPU on an Intel or AMD machine.
 
-It's recommended that you note down your 24 secret words (seed phrase) with a pen and paper, and secure it safely. If you forget your dashboard's password, or in case something goes wrong with your Umbrel, you will need these 24 words to recover your funds in the Bitcoin wallet of your Umbrel.
+### Download and install
 
-You're also recommended to download a backup of your payment channels regularly as it'll be required to recover your funds in the Lightning wallet of your Umbrel in case something goes wrong. You should also always download the latest backup file before installing an update.
+Head to **[umbrel.com/downloads](https://umbrel.com/downloads)** for the latest umbrelOS ISO and images, along with step-by-step installation guides for each platform.
 
-## ❤️ Contributing
+> [!NOTE]
+> umbrelOS is a standalone operating system that installs directly onto your device. It can't be installed on top of an existing Linux distribution.
 
-We welcome and appreciate new contributions.
+## Building apps for umbrelOS
 
-If you're a developer looking to help but not sure where to begin, check out [these issues](https://github.com/getumbrel/umbrel/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) that have specifically been marked as being friendly to new contributors.
+If you're interested in building an app for umbrelOS or packaging an existing one, please refer to the [Umbrel App Framework documentation](https://github.com/getumbrel/umbrel-apps/blob/master/README.md).
 
-If you're looking for a bigger challenge, before opening a pull request please [create an issue](https://github.com/getumbrel/umbrel/issues/new/choose) or [join our community chat](https://t.me/getumbrel) to get feedback, discuss the best way to tackle the challenge, and to ensure that there's no duplication of work.
+## License
 
----
+umbrelOS is licensed under the PolyForm Noncommercial 1.0.0 license. TL;DR — You're free to use, fork, modify, and redistribute Umbrel for personal and nonprofit use under the same license. If you're interested in using umbrelOS for commercial purposes, such as selling plug-and-play home servers with umbrelOS, etc — please reach out to us at partner@umbrel.com.
 
-_"Being open source means anyone can independently review the code. If it was closed source, nobody could verify the security. I think it's essential for a program of this nature to be open source." — Satoshi Nakamoto_
+[![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-%235351FB)](https://github.com/getumbrel/umbrel/blob/master/LICENSE.md)
 
-[![License](https://img.shields.io/badge/license-CC%20BY--NC--ND%204.0-%235351FB)](https://github.com/getumbrel/umbrel/blob/master/LICENSE.md)
-
-[getumbrel.com](https://getumbrel.com)
+[umbrel.com](https://umbrel.com)

@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  tor_server:
+    image: ghcr.io/getumbrel/tor:0.4.9.14@sha256:7663d18fe37b3edd97c859aa36bb5eeaa328d86c57729db0433dff430e8abd8d
+    user: '1000:1000'
+    restart: on-failure
+    volumes:
+      - ${TOR_ENTRYPOINT_SCRIPT}:/umbrel/entrypoint.sh
+      - ${TOR_DATA_DIR}:/data
+    environment:
+      HOME: '/tmp'
+      HS_DIR: '${TOR_HS_APP_DIR}'
+      HS_PORTS: '${TOR_HS_PORTS}'
+    entrypoint: '/umbrel/entrypoint.sh'

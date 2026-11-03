@@ -1,0 +1,26 @@
+#!/bin/env bash
+
+# This shim is the main umbreld entrypoint so we can hook development mode and resolve the
+# start script from package.json.
+
+
+# Hook to run development mode
+if [[ -d "/umbrel-dev" ]]
+then
+    echo "Running in development mode"
+    cd /umbrel-dev
+    exec npm run dev container-init
+fi
+
+# Find the project directory and follow symlinks if necessary
+project_directory="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
+
+# Get the start script from package.json
+entrypoint=$(npm --prefix "${project_directory}" pkg get scripts.start)
+
+# Remove double quotes
+entrypoint="${entrypoint#\"}"
+entrypoint="${entrypoint%\"}"
+
+# Execute the entrypoint and pass through any arguments
+exec "${project_directory}/${entrypoint}" "$@"

@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  tor_proxy:
+    container_name: tor_proxy
+    image: ghcr.io/getumbrel/tor:0.4.9.14@sha256:7663d18fe37b3edd97c859aa36bb5eeaa328d86c57729db0433dff430e8abd8d
+    user: '1000:1000'
+    restart: on-failure
+    volumes:
+      - ${UMBREL_TORRC}:/etc/tor/torrc:ro
+      - ${UMBREL_DATA_DIR}/tor/data:/data
+    environment:
+      HOME: '/tmp'
+    networks:
+      default:
+        ipv4_address: $TOR_PROXY_IP
+networks:
+  default:
+    name: umbrel_main_network
+    ipam:
+      driver: default
+      config:
+        - subnet: '$NETWORK_IP/16'
